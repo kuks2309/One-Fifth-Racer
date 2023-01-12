@@ -1,0 +1,18 @@
+<launch> 
+
+
+  <node name="gps_msgs_package_node" pkg="gps_msgs_package" type="gps_msgs_package_node" output="screen" > 
+     
+     <!-- imu angle을 사용할 때에는 1로 할 것 -->
+          <param name="use_imu_yaw_angle" value="1"/>
+          <param name="imu_yaw_offset"   value="0"/>
+          <param name ="imu_topic" value="imu"/>
+     <!-- GPS 2개 사용할때 1로 할 것 -->
+          <param name="use_two_gps"       value="0"/>
+      
+      
+      <remap from="/gps/fix1"     to="/gps/fix_front" />  
+      <!--  Rear no 2--> 
+      <remap from="/gps/fix2"     to="/gps/fix_rear" /> 
+  </node>
+</launch> 
