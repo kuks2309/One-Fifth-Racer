@@ -13,3 +13,8 @@
   
   alias cmo='cd ~/one_fifth_catkin_ws && catkin_make && source ~/one_fifth_catkin_ws/devel/setup.bash'
   
+  
+  3.
+  
+   roslaunch uni_car uni_car_world.launch
+
