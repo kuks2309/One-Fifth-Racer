@@ -337,7 +337,7 @@ int main(int argc, char **argv)
    else if(fix1 == 2)   // if 1 gps's are all fixed
    {
 	   
-		if(use_imu_yaw_angle == 1) h_angle = imu_yaw + DEG2RAD(imu_yaw_offset);		   
+	    if(use_imu_yaw_angle == 1) h_angle = imu_yaw + DEG2RAD(imu_yaw_offset);		   
 		  
 	    utm1.x     = Pose1.x; 	utm1.y     = Pose1.y;	utm1.theta = h_angle;
 	    
