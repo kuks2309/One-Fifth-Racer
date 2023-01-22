@@ -297,21 +297,19 @@ int main(int argc, char **argv)
   
   while (ros::ok())
   {	
-	
 	diff_x = Pose1.x - Pose2.x;
 	diff_y = Pose1.y - Pose2.y;
-	
+	current_time = ros::Time::now();	
 	ROS_INFO("Front GPS Fix: %1d  Rear GPS Fix: %1d",fix1,fix2);
 	if((fix1 == 2) && (fix2 == 2) )  // if 2 gps's are all fixed
 	{
-	   current_time = ros::Time::now();	
+	  
 	   printf("diff_x : %6.3lf  diff_ys : %6.3lf \n", diff_x, diff_y);
 	   printf("use imu angle : %d  two gps : %d \n\n\n", use_imu_yaw_angle,  use_two_gps);
        
-       if(use_two_gps == 1)
+       if(use_two_gps == 1) 
 	   {
-		    h_angle = atan2f(diff_y,diff_x);
-		  
+		    h_angle = atan2f(diff_y,diff_x);		  
 	   }
 	   utm1.x     = Pose1.x; 	utm1.y     = Pose1.y;	utm1.theta = h_angle;
 	   utm2.x     = Pose2.x; 	utm2.y     = Pose2.y;	utm2.theta = h_angle;
@@ -321,15 +319,13 @@ int main(int argc, char **argv)
 	   angle_pub.publish(gps_heading_angle);
 	   
 	   gps_heading_angle_degree.data = RAD2DEG(h_angle);
-	   angle_degree_pub.publish(gps_heading_angle_degree);
-	   
-	   
+	   angle_degree_pub.publish(gps_heading_angle);
+	   	   
 	   //Pos -> Ros Coordinate
        ROS_INFO("Front GPS E: %.7lf N: %.7lf",Pose2.x,Pose2.y);
        if(use_two_gps == 1)      ROS_INFO("Rear  GPS E: %.7lf N: %.7lf",Pose1.x,Pose1.y);
        ROS_INFO("Heading Angle : %.7lf",RAD2DEG(h_angle));      
-      
-	 
+      	 
 	   utm1_pub.publish(utm1);
 	   utm2_pub.publish(utm2);
 	
@@ -337,7 +333,7 @@ int main(int argc, char **argv)
    else if(fix1 == 2)   // if 1 gps's are all fixed
    {
 	   
-	    if(use_imu_yaw_angle == 1) h_angle = imu_yaw + DEG2RAD(imu_yaw_offset);		   
+		if(use_imu_yaw_angle == 1) h_angle = imu_yaw + DEG2RAD(imu_yaw_offset);		   
 		  
 	    utm1.x     = Pose1.x; 	utm1.y     = Pose1.y;	utm1.theta = h_angle;
 	    
@@ -345,17 +341,13 @@ int main(int argc, char **argv)
 	    gps_heading_angle.data = h_angle;
 	    angle_pub.publish(gps_heading_angle);
 	    gps_heading_angle_degree.data = RAD2DEG(h_angle);
-	    angle_degree_pub.publish(gps_heading_angle);
+	    angle_degree_pub.publish(gps_heading_angle_degree);
 	    //Pos -> Ros Coordinate
         ROS_INFO("Front GPS E: %.7lf N: %.7lf",Pose2.x,Pose2.y);
         ROS_INFO("Heading Angle : %.7lf",RAD2DEG(h_angle));      
         printf("imu_angle : %6.3lf\n", RAD2DEG(imu_yaw));
 	    utm1_pub.publish(utm1);
    }
-	   
-      
-	 
-	   
 	   
 	   gps_odom1.header.stamp = current_time;
        gps_odom1.header.frame_id = odom_frame_id;
