@@ -243,14 +243,7 @@ int main(int argc, char **argv)
     std::string data;
     
     Relative_current_pos.pose.position.x =  (Pose2.y - initial_utm_pose.y);
-	Relative_current_pos.pose.position.y =  -(Pose2.x - initial_utm_pose.x);
-    
-    /**
-     * The publish() function is how you send messages. The parameter
-     * is the message object. The type of this object must agree with the type
-     * given as a template parameter to the advertise<>() call, as was done
-     * in the constructor above.
-     */
+	Relative_current_pos.pose.position.y =  -(Pose2.x - initial_utm_pose.x);   
     
     printf("GPS datum  %.4lf  %.4lf  %.4lf  %.4lf\n",datum_lat ,datum_lon, initial_utm_pose.x,initial_utm_pose.y);
        
