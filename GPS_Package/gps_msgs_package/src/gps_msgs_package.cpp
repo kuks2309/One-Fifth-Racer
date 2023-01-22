@@ -321,7 +321,7 @@ int main(int argc, char **argv)
 	   angle_pub.publish(gps_heading_angle);
 	   
 	   gps_heading_angle_degree.data = RAD2DEG(h_angle);
-	   angle_degree_pub.publish(gps_heading_angle);
+	   angle_degree_pub.publish(gps_heading_angle_degree);
 	   
 	   
 	   //Pos -> Ros Coordinate
