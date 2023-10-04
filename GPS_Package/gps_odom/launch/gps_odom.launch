@@ -1,5 +1,0 @@
-<launch> 
-
-   <node name="utm_odom_node" pkg="utm_to_odom" type="utm_odom_node" output="screen" />
-
-</launch> 
