@@ -52,8 +52,10 @@
     </node>
 
     <!-- Launch the odom pose -->   
-    <node pkg="car_navigator" type="odom_path_node.py" name="odom_path_node">
+    <!--<node pkg="car_navigator_odm" type="odom_path_node.py" name="odom_path_node">
     </node>
+    -->
+    
 
     <!-- Spawn robot in Gazebo -->
     <node pkg="gazebo_ros" type="spawn_model" name="spawn_vehicle"
@@ -62,5 +64,10 @@
             -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)
             -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"
         respawn="false" />
+        
+	<!-- Launch gps imu simulation -->   		
+	
+	<node pkg="gps_two_publiser" name="gazebo_two_gps_sim"  type="gazebo_two_gps_sim.py" />
+	 
         
 </launch>  
